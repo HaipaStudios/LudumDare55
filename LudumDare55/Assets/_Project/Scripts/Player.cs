@@ -6,4 +6,5 @@ using Sirenix.OdinInspector;
 public class Player : MonoBehaviour{
     public static Player INSTANCE;
     [DisableInEditorMode]public bool dead;
+    void Awake(){INSTANCE=this;}
 }

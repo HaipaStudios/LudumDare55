@@ -18,17 +18,20 @@ public class Movement : MonoBehaviour
     public float slideSpeed = 5;
     public float wallJumpLerp = 10;
     public float dashSpeed = 20;
+    public float coyoteTimeDuration = 0.2f;
 
     [Space]
     [Header("Booleans")]
     public bool canWallGrab = false;
     public bool canWallSlide = false;
+    public bool canWallJump = false;
     public bool canDash = false;
     public bool canMove;
     public bool wallGrab;
     public bool wallJumped;
     public bool wallSlide;
     public bool isDashing;
+    private float coyoteTimeCounter;
 
     [Space]
 
@@ -86,7 +89,7 @@ public class Movement : MonoBehaviour
             GetComponent<BetterJumping>().enabled = true;
         }
         
-        if (wallGrab && !isDashing)
+        if (canWallGrab && canWallSlide && wallGrab && !isDashing)
         {
             rb.gravityScale = 0;
             if(x > .2f || x < -.2f)
@@ -101,6 +104,8 @@ public class Movement : MonoBehaviour
             rb.gravityScale = 3;
         }
 
+        if(coll.onWall && !canWallGrab){rb.velocity = new Vector2(0,rb.velocity.y);}
+
         if(canWallSlide){
             if(coll.onWall && !coll.onGround)
             {
@@ -113,15 +118,26 @@ public class Movement : MonoBehaviour
 
             if (!coll.onWall || coll.onGround)
                 wallSlide = false;
+        }else{wallSlide = false;}
+        
+
+        if (!coll.onGround && coyoteTimeCounter > 0)
+        {
+            coyoteTimeCounter -= Time.deltaTime;
         }
+        else if (coll.onGround)
+        {
+            coyoteTimeCounter = coyoteTimeDuration;
+        }
+
 
         if (Input.GetButtonDown("Jump"))
         {
             anim.SetTrigger("jump");
 
-            if (coll.onGround)
+            if (coll.onGround || coyoteTimeCounter > 0)
                 Jump(Vector2.up, false);
-            if (coll.onWall && !coll.onGround)
+            if (coll.onWall && !coll.onGround && canWallJump)
                 WallJump();
         }
 
@@ -146,7 +162,7 @@ public class Movement : MonoBehaviour
 
         WallParticle(y);
 
-        if (wallGrab || wallSlide || !canMove)
+        if ((canWallGrab && wallGrab) || (canWallSlide && wallSlide) || !canMove)
             return;
 
         if(x > 0)
@@ -237,9 +253,9 @@ public class Movement : MonoBehaviour
 
     private void WallSlide()
     {
-        if(canWallGrab){
+        if(canWallGrab && canWallSlide){
             if(coll.wallSide != side)
-            anim.Flip(side * -1);
+                anim.Flip(side * -1);
 
             if (!canMove)
                 return;
@@ -260,7 +276,7 @@ public class Movement : MonoBehaviour
         if (!canMove)
             return;
 
-        if (wallGrab)
+        if (canWallGrab && wallGrab)
             return;
 
         if (!wallJumped)
