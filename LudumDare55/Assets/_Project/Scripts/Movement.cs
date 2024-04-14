@@ -13,12 +13,13 @@ public class Movement : MonoBehaviour
 
     [Space]
     [Header("Stats")]
-    public float speed = 10;
-    public float jumpForce = 50;
-    public float slideSpeed = 5;
-    public float wallJumpLerp = 10;
-    public float dashSpeed = 20;
+    public float speed = 12;
+    public float jumpForce = 22;
+    public float slideSpeed = 1;
+    public float wallJumpLerp = 5;
+    public float dashSpeed = 40;
     public float coyoteTimeDuration = 0.2f;
+    public float fastfallDelay = 0.4f;  // Time after jumping where its possible to fastfall
 
     [Space]
     [Header("Booleans")]
@@ -32,6 +33,7 @@ public class Movement : MonoBehaviour
     public bool wallSlide;
     public bool isDashing;
     private float coyoteTimeCounter;
+    private float fastfallDelayTimer;
 
     [Space]
 
@@ -176,7 +178,7 @@ public class Movement : MonoBehaviour
             anim.Flip(side);
         }
 
-
+        if(fastfallDelayTimer>0)fastfallDelayTimer-=Time.deltaTime;
     }
 
     void GroundTouch()
@@ -297,6 +299,8 @@ public class Movement : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity += dir * jumpForce;
 
+        fastfallDelayTimer = fastfallDelay;
+
         particle.Play();
     }
 
@@ -331,5 +335,9 @@ public class Movement : MonoBehaviour
     {
         int particleSide = coll.onRightWall ? 1 : -1;
         return particleSide;
+    }
+
+    public bool CanFastfall(){
+        return !coll.onGround && fastfallDelayTimer<=0;
     }
 }
