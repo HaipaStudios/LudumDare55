@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6661526193010513521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7894384383534738705}
+  - component: {fileID: 8558713320165653652}
+  m_Layer: 0
+  m_Name: CoreSetup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7894384383534738705
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6661526193010513521}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8558713320165653652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6661526193010513521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3645e4adb573cc4080ea03285f37923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveSerialPrefab: {fileID: 8661245258430574368, guid: 4d0d5ae6c7658d640b8372a9c72629ea, type: 3}
+  easySavePrefab: {fileID: 7447936272242955504, guid: af162ef3230fdd243ad501a262255ce8, type: 3}
+  gsceneManagerPrefab: {fileID: 5925707062175753682, guid: a909544098ebad949af32d1a43a199aa, type: 3}
+  gameManagerPrefab: {fileID: 5099497416477065215, guid: 713c69f38d2d1e44591e4e0e208c83e7, type: 3}
+  assetsManagerPrefab: {fileID: 3987027756789238023, guid: 5321d70657cbb7a42a0d45d20ff52693, type: 3}
+  audioManagerPrefab: {fileID: 3704817456928244893, guid: ac38f59e8c6c7e14ea7d967e9354aa6d, type: 3}
+  jukeboxPrefab: {fileID: 8663346205275840682, guid: 191da1eb10e522f4bb7001f93334bbc4, type: 3}
