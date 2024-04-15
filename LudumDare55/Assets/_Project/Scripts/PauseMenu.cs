@@ -17,7 +17,6 @@ public class PauseMenu : MonoBehaviour{
     [ChildGameObjectsOnly]public Toggle holdToFlyToggle;
     [ChildGameObjectsOnly]public Toggle particlesToggle;
     [ChildGameObjectsOnly]public Slider soundVolumeSlider;
-    [ChildGameObjectsOnly]public Slider windVolumeSlider;
     [ChildGameObjectsOnly]public Slider musicVolumeSlider;
     float unpausedTimer;
     float unpausedTimeReq=0.3f;
@@ -33,7 +32,6 @@ public class PauseMenu : MonoBehaviour{
         UpdateToggleHoldToFly();
         UpdateToggleParticles();
         soundVolumeSlider.value=SaveSerial.INSTANCE.settingsData.soundVolume;
-        windVolumeSlider.value=SaveSerial.INSTANCE.settingsData.windVolume;
         musicVolumeSlider.value=SaveSerial.INSTANCE.settingsData.musicVolume;
     }
     void Update(){
@@ -117,10 +115,6 @@ public class PauseMenu : MonoBehaviour{
     
     public void SetSoundVolume(float val){
         SaveSerial.INSTANCE.settingsData.soundVolume=val;
-        // SaveSerial.INSTANCE.SaveSettings();
-    }
-    public void SetWindVolume(float val){
-        SaveSerial.INSTANCE.settingsData.windVolume=val;
         // SaveSerial.INSTANCE.SaveSettings();
     }
     public void SetMusicVolume(float val){

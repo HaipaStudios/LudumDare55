@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimationScript : MonoBehaviour
 {
-
+    [SerializeField] bool reverseFlip = true;
     private Animator anim;
     private Movement move;
     private Collision coll;
@@ -51,7 +51,8 @@ public class AnimationScript : MonoBehaviour
 
     public void Flip(int side)
     {
-
+        if(reverseFlip)side *= -1;
+        
         if (move.wallGrab || move.wallSlide)
         {
             if (side == -1 && sr.flipX)

@@ -45,8 +45,6 @@ public class AudioManager : MonoBehaviour{
 			}
 			if(ss.soundVolume>0){audioMixer.SetFloat("SoundVolume", AssetsManager.InvertNormalizedMin(ss.soundVolume,-50));}
 			else{audioMixer.SetFloat("SoundVolume", -80);}
-			if(ss.windVolume>0){audioMixer.SetFloat("WindVolume", AssetsManager.InvertNormalizedMin(ss.windVolume,-50));}
-			else{audioMixer.SetFloat("WindVolume", -80);}
 			if(ss.musicVolume>0){audioMixer.SetFloat("MusicVolume", AssetsManager.InvertNormalizedMin(ss.musicVolume,-50));}
 			else{audioMixer.SetFloat("MusicVolume", -80);}
 		}

@@ -291,17 +291,20 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void Jump(Vector2 dir, bool wall)
-    {
+    public void Jump(Vector2 dir, bool wall, float _jumpForce=0){
+        if(_jumpForce==0){_jumpForce=jumpForce;}
         slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
         ParticleSystem particle = wall ? wallJumpParticle : jumpParticle;
 
         rb.velocity = new Vector2(rb.velocity.x, 0);
-        rb.velocity += dir * jumpForce;
+        rb.velocity += dir * _jumpForce;
 
         fastfallDelayTimer = fastfallDelay;
 
         particle.Play();
+    }
+    public void JumpUp(float _jumpForce=0){
+        Jump(Vector2.up, false, _jumpForce);
     }
 
     IEnumerator DisableMovement(float time)

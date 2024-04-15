@@ -126,7 +126,6 @@ public class SaveSerial : MonoBehaviour{
 		public float masterVolume=0.95f;
 		public float masterOOFVolume=0.25f;
 		public float soundVolume=0.8f;
-		public float windVolume=1f;
 		public float musicVolume=0.9f;
 
 		public bool pauseWhenOOF=true;
